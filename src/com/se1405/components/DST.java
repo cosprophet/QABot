@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import com.se1405.components.NLU;
 import com.se1405.beans.TaxiStatus;
+import com.se1405.beans.RestaurantStatus;
 import com.se1405.beans.Turn;
 import com.se1405.beans.Status; 
 
@@ -28,6 +29,11 @@ public class DST {
 			if(intent.equals("taxi")) {
 				status = new TaxiStatus();
 				userIntents.put(turn.getUser().getId(), "taxi");
+				userStatus.put(turn.getUser().getId(), status);
+			}
+			else if(intent.equals("restaurant")){
+				status = new RestaurantStatus();
+				userIntents.put(turn.getUser().getId(), "restaurant");
 				userStatus.put(turn.getUser().getId(), status);
 			}
 			else {

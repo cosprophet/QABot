@@ -8,6 +8,9 @@ public class NLU {
 		if(utterance.contains("车")) {
 			return "taxi";
 		}
+		else if(utterance.contains("订")) {
+			return "restaurant";
+		}
 		return null;
 	}
 	
@@ -23,6 +26,26 @@ public class NLU {
 				int index = utterance.indexOf("到");
 				String dest = utterance.substring(index+1, index+3);
 				sv.put("destination", dest);
+			}
+		}
+		else if(intent == "restaurant") {
+			if(utterance.contains("日") || utterance.contains("号")) {
+				int index = utterance.indexOf("日");
+				if(index == -1) {
+					index = utterance.indexOf("号");
+				}
+				String day = utterance.substring(index-3, index+1);
+				sv.put("day", day);
+			}
+			if(utterance.contains(":")) {
+				int index = utterance.indexOf(":");
+				String time = utterance.substring(index-1, index+2);
+				sv.put("time", time);
+			}
+			if(utterance.contains("人")) {
+				int index = utterance.indexOf("人");
+				String people = utterance.substring(index-1, index);
+				sv.put("people", people);
 			}
 		}
 		else {
